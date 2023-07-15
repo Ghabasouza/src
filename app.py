@@ -6,4 +6,4 @@ import json
   
 
 teste = FileArq('fatvenda.xml')
-teste.open_arq()
+t = teste.module_arq(teste.open_arq())
