@@ -1,23 +1,19 @@
-
+from bs4 import BeautifulSoup 
 
 class FileArq:
 
     def __init__(self, open_:str) -> None:
-        open_ = self.open
+        self.open = open_ 
     
-        print(open)
     #abre os arquivos que for passar.
-    def open_arq(self, linha:bool=False, linhas:bool=False):
-        ref_aqr = open("C:/Temp/Projeto/Gerador_doc/src/arquivos"+self.open,mode="r", encoding='UTF8')
-
-        if ref_aqr == None:
-            return None
-        elif ref_aqr != None and linha==True:
-            return ref_aqr.linha
-        elif  ref_aqr!=None and linhas==True :
-            return ref_aqr.linhas
+    def open_arq(self):
+        with open("C:/Projetos/Conversor/src/arquivos/"+self.open, "r") as f:
+            Bs_data = BeautifulSoup(f.read(), "xml") 
         
-        return ref_aqr
+        if Bs_data == None:
+            return None
+        elif Bs_data != None:
+            return Bs_data
         
 
     
