@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup 
-
+from model.menu import Menu
 class FileArq:
 
     def __init__(self, open_:str) -> None:
@@ -15,24 +15,29 @@ class FileArq:
         elif Bs_data != None:
             return Bs_data
         
+    def is_number(self,num):
+        try:
+            float(num.next)
+        except ValueError:
+            return False
+        return True
 
     def module_arq(self, Bs_data:BeautifulSoup):
         
         if Bs_data != None:
-            data=[]
             b_unique = Bs_data.find_all('Module')
             
-            for i in b_unique:
-                if is_number(i):
-                    data.append(i.next)
-            
-            return data
-        else:
-            return None
+            if not self.is_number(b_unique[0]):
+
+                return b_unique[0].next
+            else:
+                return None
         
-    def is_number(salf,num):
-        try:
-            float(num)
-        except ValueError:
-            return False
-        return True
+        
+    def menu_title_sub(self, Bs_data:BeautifulSoup):
+        
+       if Bs_data != None:
+           data=[]
+           b_unique = Bs_data.find_all('Title', {'lang':'pt'})
+           for i in b_unique:
+               data.append(i.next)
