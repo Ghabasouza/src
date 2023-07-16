@@ -27,3 +27,7 @@ class Menu:
         return self.Function
     def Set_function(self, function):
         self.function = function
+
+    
+        
+     
